@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid/v4';
+import { Provider } from 'react-redux';
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
@@ -21,6 +22,14 @@ const categoriesReducer = (state = [], action) => {
     }
 };
 
-const store = createStore(combineReducers({ categories: categoriesReducer }));
+const store = createStore(combineReducers({ categories: categoriesReducer }), window.__REDUX_DEVTOOLS_EXTENSION__ && 
+window.__REDUX_DEVTOOLS_EXTENSION__());
 
-ReactDom.render(<App />, document.getElementById('root'));
+window.store = store;
+
+ReactDom.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

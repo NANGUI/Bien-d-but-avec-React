@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
+import { connect } from 'react-redux';
 
 import FormCategory from './FormCategory';
 import ListCategories from './ListCategories';
@@ -24,6 +25,13 @@ class App extends Component {
             <ListCategories categories={this.state.categories} />
           </div>;
     }
-}
+} // End Class
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories
+    }
+};
+
+// export default App;
+export default connect(mapStateToProps)(App);
