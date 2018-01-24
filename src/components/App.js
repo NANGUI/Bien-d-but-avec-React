@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
 
 import FormCategory from './FormCategory';
@@ -11,21 +10,33 @@ class App extends Component {
         categories: []
     };
 
-    addCategory = (category) => {
-        let oldCategories = this.state.categories;
-        category.id = uuid();
-        let newCategories = [...oldCategories, category];
-        this.setState({categories: newCategories});
-    };
+    // addCategory = (category) => {
+    //     let oldCategories = this.state.categories;
+    //     category.id = uuid();
+    //     let newCategories = [...oldCategories, category];
+    //     this.setState({categories: newCategories});
+    // };
+
+    // addCategory = (category) => {
+    //     // this.props.dispatch({type: 'ADD_CATEGORY', payload: category});
+    //     this.props.addCategory(category);
+    // };
 
     render(){
         return <div>
             <h3>Liste des categories</h3>
-            <FormCategory formTitle="Ajouter des catégories" addCategory={this.addCategory} />
-            <ListCategories categories={this.state.categories} />
+            <FormCategory formTitle="Ajouter des catégories" addCategory={this.props.addCategory} />
+            <ListCategories categories={this.props.categories} />
           </div>;
     }
 } // End Class
+
+const addCategoryActionCreator = (category) => {
+    return {
+        type: 'ADD_CATEGORY',
+        payload: category
+    }
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -33,5 +44,13 @@ const mapStateToProps = (state) => {
     }
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCategory: (category) => {
+            dispatch(addCategoryActionCreator(category));
+        }
+    }
+};
+
 // export default App;
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

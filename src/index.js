@@ -15,15 +15,16 @@ const categoriesReducer = (state = [], action) => {
             console.log('ADD_CATEGORY');
             console.log('action ', action);
             action.payload.id = uuid();
-            const newState = [...state, action.payload.id];
+            const newState = [...state, action.payload];
             return newState;
         default:
             return state;
     }
 };
 
-const store = createStore(combineReducers({ categories: categoriesReducer }), window.__REDUX_DEVTOOLS_EXTENSION__ && 
-window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(combineReducers({ categories: categoriesReducer }), 
+                window.__REDUX_DEVTOOLS_EXTENSION__ && 
+                window.__REDUX_DEVTOOLS_EXTENSION__());
 
 window.store = store;
 

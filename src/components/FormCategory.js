@@ -10,8 +10,8 @@ class FormCategory extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        this.props.addCategory(this.state);
+        const category = {name: this.state.name, description: this.state.description};
+        this.props.addCategory(category);
         this.setState({name: '', description: ''});
     };
 

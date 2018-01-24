@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, PageHeader, FormGroup, ListGroupItem, Checkbox } from 'react-bootstrap';
+import { Col, PageHeader, FormGroup, ListGroupItem } from 'react-bootstrap';
 
 const ListCategories = (props) => {
     return <div>
