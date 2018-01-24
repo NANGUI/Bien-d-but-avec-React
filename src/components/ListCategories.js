@@ -1,5 +1,7 @@
 import React from 'react';
-import { Col, PageHeader, FormGroup, ListGroupItem } from 'react-bootstrap';
+import { Col, PageHeader, FormGroup } from 'react-bootstrap';
+
+import Category from './Category';
 
 const ListCategories = (props) => {
     return <div>
@@ -7,11 +9,7 @@ const ListCategories = (props) => {
           <PageHeader>Liste de Categories</PageHeader>
           <FormGroup>
             {
-                props.categories.map(category => 
-                  <ListGroupItem key={category.id}>
-                    {category.name} - {category.description}
-                  </ListGroupItem>
-                )
+                props.categories.map(category => <Category data={category} key={category.id} /> )
             }
           </FormGroup>
         </Col>
