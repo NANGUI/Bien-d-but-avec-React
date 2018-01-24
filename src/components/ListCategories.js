@@ -9,7 +9,7 @@ const ListCategories = (props) => {
           <PageHeader>Liste de Categories</PageHeader>
           <FormGroup>
             {
-                props.categories.map(category => <Category data={category} key={category.id} /> )
+                props.categories.map(category => <Category data={category} editCategory={props.editCategory} key={category.id} /> )
             }
           </FormGroup>
         </Col>

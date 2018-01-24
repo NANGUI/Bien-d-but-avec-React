@@ -17,6 +17,15 @@ const categoriesReducer = (state = [], action) => {
             action.payload.id = uuid();
             const newState = [...state, action.payload];
             return newState;
+        case 'EDIT_CATEGORY':
+            console.log('EDIT_CATEGORY');
+            const categoryId = action.payload.id;
+            return state.map(category => {
+                if(category.id !== categoryId) {
+                    return category;
+                }
+                return action.payload;
+            });
         default:
             return state;
     }

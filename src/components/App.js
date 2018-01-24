@@ -26,7 +26,7 @@ class App extends Component {
         return <div>
             <h3>Liste des categories</h3>
             <FormCategory formTitle="Ajouter des catégories" addCategory={this.props.addCategory} />
-            <ListCategories categories={this.props.categories} />
+            <ListCategories categories={this.props.categories} editCategory={this.props.editCategory} />
           </div>;
     }
 } // End Class
@@ -36,6 +36,13 @@ const addCategoryActionCreator = (category) => {
         type: 'ADD_CATEGORY',
         payload: category
     }
+};
+
+const editCategoryActionCreator = (category) => {
+    return {
+        type: 'EDIT_CATEGORY',
+        payload: category
+    } 
 };
 
 const mapStateToProps = (state) => {
@@ -48,6 +55,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addCategory: (category) => {
             dispatch(addCategoryActionCreator(category));
+        },
+        editCategory: (category) => {
+            dispatch(editCategoryActionCreator(category));
         }
     }
 };
